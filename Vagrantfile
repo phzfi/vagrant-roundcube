@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise32"
+  config.vm.box = "hashicorp/trusty32"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
 config.vm.provision :shell, :path => "scripts/install-packages-apt.sh"
 config.vm.provision :shell, :path => "scripts/configure-web.sh"
 config.vm.provision :shell, :path => "scripts/set-up-database.sh"
-config.vm.provision :shell, :path => "scripts/wordpress.sh"
+config.vm.provision :shell, :path => "scripts/roundcube.sh"
 config.vm.provision :shell, :path => "scripts/vhosts.sh"
 
 
@@ -34,7 +34,7 @@ config.vm.provision :shell, :path => "scripts/vhosts.sh"
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.66.66"
-  config.vm.network "private_network", ip: "192.168.66.66"
+  config.vm.network "private_network", ip: "192.168.66.67"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
