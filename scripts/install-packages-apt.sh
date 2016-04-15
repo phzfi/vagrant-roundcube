@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
 sed -i 's/\/archive.ubuntu.com/\/fi.archive.ubuntu.com/' /etc/apt/sources.list
+
+echo 'deb http://security.ubuntu.com/ubuntu trusty-security multiverse' >> /etc/apt/sources.list
+echo 'deb-src http://security.ubuntu.com/ubuntu trusty-security multiverse' >> /etc/apt/sources.list
+
 sudo apt-get update
 # debconf-utils offers a way of defining answers to interactive prompts
 sudo apt-get -q -y install debconf-utils
 sudo apt-get -q -y install aptitude
 if [[ ! -f /etc/apt/sources.list.d/pkg.phz.fi.list ]]; then
-     echo "deb http://pkg.phz.fi/precise ./" > /etc/apt/sources.list.d/pkg.phz.fi.list
+     echo "deb http://pkg.phz.fi/trusty ./" > /etc/apt/sources.list.d/pkg.phz.fi.list
 fi
 sudo apt-get update
 
@@ -39,5 +43,5 @@ echo "snort	snort/address_range	string	10.0.0.0/8" | debconf-set-selections
 dpkg-reconfigure -f noninteractive grub-pc
 
 sudo apt-get -q -y upgrade
-sudo apt-get -q -y --force-yes install phz-dev-common phz-dev-php
+sudo apt-get -q -y --force-yes install phz-security phz-common phz-dev-common phz-dev-php
 

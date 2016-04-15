@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/trusty32"
+  config.vm.box = "ubuntu/trusty32"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -21,7 +21,6 @@ Vagrant.configure(2) do |config|
 
 config.vm.provision :shell, :path => "scripts/install-packages-apt.sh"
 config.vm.provision :shell, :path => "scripts/configure-web.sh"
-config.vm.provision :shell, :path => "scripts/set-up-database.sh"
 config.vm.provision :shell, :path => "scripts/roundcube.sh"
 config.vm.provision :shell, :path => "scripts/vhosts.sh"
 
@@ -51,13 +50,13 @@ config.vm.provision :shell, :path => "scripts/vhosts.sh"
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
+   config.vm.provider "virtualbox" do |vb|
+     # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+  
+     # Customize the amount of memory on the VM:
+     vb.memory = "768"
+   end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
